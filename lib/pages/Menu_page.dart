@@ -8,18 +8,27 @@ class MenuPage extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget header() {
       return Container(
-        margin: EdgeInsets.all(10),
-        height: 300,
+        height: 250,
         width: MediaQuery.of(context).size.width,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10), color: primaryColor),
+          borderRadius: BorderRadius.circular(20),
+          color: primaryColor,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black26,
+              spreadRadius: 5,
+              blurRadius: 5,
+              offset: Offset.fromDirection(-2, -6),
+            ),
+          ],
+        ),
         child: Center(
             child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               'Hello, Refsi !',
-              style: primaryTextstyle.copyWith(
+              style: whiteTextStyle.copyWith(
                   fontSize: 25, fontWeight: FontWeight.bold),
             ),
             SizedBox(
@@ -27,7 +36,7 @@ class MenuPage extends StatelessWidget {
             ),
             Text(
               'Which book suits your \ncurrent mood?',
-              style: primaryTextstyle.copyWith(
+              style: whiteTextStyle.copyWith(
                   fontSize: 20, fontWeight: FontWeight.normal),
               textAlign: TextAlign.center,
             ),
@@ -38,44 +47,110 @@ class MenuPage extends StatelessWidget {
 
     Widget body() {
       return Padding(
-        padding: const EdgeInsets.only(top: 220, left: 10, right: 10),
-        child: Container(
-          margin: EdgeInsets.all(10),
-          height: 300,
-          width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10), color: whiteColor),
-          child: Center(
+        padding: const EdgeInsets.only(top: 190, left: 10, right: 10),
+        child: Column(
+          children: [
+            Container(
+              margin: EdgeInsets.all(10),
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                color: whiteColor,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black26,
+                    spreadRadius: 5,
+                    blurRadius: 5,
+                    offset: Offset.fromDirection(-2, -6),
+                  ),
+                ],
+              ),
               child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Hello, Refsi !',
-                style: primaryTextstyle.copyWith(
-                    fontSize: 25, fontWeight: FontWeight.bold),
+                children: [
+                  Container(
+                    margin: EdgeInsets.all(20),
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: containerColor,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black26,
+                          spreadRadius: 5,
+                          blurRadius: 5,
+                          offset: Offset.fromDirection(-2, -6),
+                        ),
+                      ],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Image(
+                                height: 100,
+                                width: 100,
+                                image: AssetImage(
+                                  'assets/buku.jpg',
+                                ),
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    'Judul Buku',
+                                    style: primaryTextstyle.copyWith(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    'Judul',
+                                    style: primaryTextstyle.copyWith(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.normal),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                  Text(
+                                    'Judul',
+                                    style: primaryTextstyle.copyWith(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.normal),
+                                  ),
+                                  SizedBox(
+                                    height: 10,
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              SizedBox(
-                height: 15,
-              ),
-              Text(
-                'Which book suits your \ncurrent mood?',
-                style: primaryTextstyle.copyWith(
-                    fontSize: 20, fontWeight: FontWeight.normal),
-                textAlign: TextAlign.center,
-              ),
-            ],
-          )),
+            ),
+          ],
         ),
       );
     }
 
     return Scaffold(
-      backgroundColor: containerColor,
-        body: Stack(
-      children: [
-        header(),
-        body(),
-      ],
-    ));
+        backgroundColor: containerColor,
+        body: SingleChildScrollView(
+          child: Stack(
+            children: [
+              header(),
+              body(),
+            ],
+          ),
+        ));
   }
 }
