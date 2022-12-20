@@ -1,7 +1,9 @@
 import 'dart:async';
 
+import 'package:book_app/providers/book_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,13 +13,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
   void initState() {
-    // TODO: implement initState
-    Timer(
-      Duration(seconds: 5),
-      () => Navigator.pushNamed(context, '/Menu'),
-    );
+    getInit();
     super.initState();
+  }
+
+  getInit() async {
+    await Provider.of<BookProvider>(context, listen: false).getBooks();
+    Navigator.pushNamed(context, '/Menu');
   }
 
   @override
